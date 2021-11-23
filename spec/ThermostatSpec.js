@@ -22,14 +22,19 @@ describe('Thermostat', () => {
     expect(thermostat.getCurrentTemperature()).toEqual(19);
   });
 
-  it('has a minimum temperature of 10 degrees ', () => {
+  it('has a minimum temperature of 10 degrees', () => {
     for (let i = 0; i < 11; i++) {
       thermostat.down();
     }
     expect(thermostat.getCurrentTemperature()).toEqual(10);
   });
 
-  it('has power saving mode on as default ', () => {
+  it('has power saving mode on as default', () => {
     expect(thermostat.isPowerSavingModeOn()).toBe(true);
+  });
+
+  it('can turn power save mode off', () => {
+    thermostat.switchPowerSavingModeOff();
+    expect(thermostat.isPowerSavingModeOn()).toBe(false);
   });
 });
