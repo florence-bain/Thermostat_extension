@@ -22,10 +22,20 @@ You can ask about the thermostat's current energy usage: < 18 is low-usage, <= 2
 ```
 git clone https://github.com/florence-bain/Thermostat_extension.git
 ```
-Then open it with this command in your terminal
+Then to open it type this command into your terminal
 ```
 open index.html
 ```
 You can view various cities by scrolling down the page. Adjust your thermostat accordingly using the '+' and '-' buttons. 
 If power-saving mode is on, you won't be able to increase the temperature higher than 25 degrees. 
 If you turn it off, you can increase up to 32. By selecting the 'Reset' button the temperature will be set back to 20 degrees.
+
+## Testing 
+Clone this repo and then type this command into your terminal
+```
+open SpecRunner.html
+```
+Here are my tests you should see:
+
+
+<img width="1406" alt="Screenshot 2021-11-25 at 19 35 03" src="https://user-images.githubusercontent.com/78934464/143493493-022c60d6-ea1d-4b99-8d25-3bfe42177afc.png">
