@@ -8,10 +8,10 @@ body {
     color: green;
   }
   
-  .medium-usage {
+.medium-usage {
     color: black;
   }
   
-  .high-usage {
+.high-usage {
     color: red;
   }

@@ -1,37 +1,14 @@
-document.querySelector('#select-city').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const displayWeather = (city) => {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric`
-  
-    fetch(url)
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        document.querySelector('#current-temperature').innerText = data.main.temp;
-      })
-    };
-
-  displayWeather('London');
-
-  document.querySelector('#select-city').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const city = document.querySelector('#current-city').value;
-
-  displayWeather(city);
-  });
-
-
+document.addEventListener("DOMContentLoaded", () => {
   const updateTemperature = () => {
     document.querySelector('#temperature').innerText = thermostat.temperature;
-    document.querySelector('#temperature').className = thermostat.energyUsage();
-  };
+    document.querySelector('#temperature').className = thermostat.energyUsage;
+  }
 
   const thermostat = new Thermostat();
   updateTemperature();
 
-  document.querySelector('#temperature-up').addEventListener('click', () => { 
-    thermostat.up(); 
+  document.querySelector('#temperature-up').addEventListener('click', () => {
+    thermostat.up();
     updateTemperature();
   });
 
@@ -45,16 +22,40 @@ document.querySelector('#select-city').addEventListener('submit', (event) => {
     updateTemperature();
   });
 
-  document.querySelector('#PSM-on').addEventListener('click', () => {
+  document.querySelector('#powersaving-on').addEventListener('click', () => {
     thermostat.switchPowerSavingModeOn();
-    document.querySelector('#power-saving-status').innerText = 'On';
+    document.querySelector('#power-saving-status').innerText = 'on';
+    updateTemperature();
+  })
+
+  document.querySelector('#powersaving-off').addEventListener('click', () => {
+    thermostat.switchPowerSavingModeOff();
+    document.querySelector('#power-saving-status').innerText = 'off';
     updateTemperature();
   });
 
-  document.querySelector('#PSM-off').addEventListener('click', () => {
-    thermostat.switchPowerSavingModeOff();
-    document.querySelector('#power-saving-status').innerText = 'Off';
-    updateTemperature();
-  })
-});
+  document.querySelector('#select-city').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const city = document.querySelector('#current-city').value;
+  });
 
+  const displayWeather = (city) => {
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric`
+  
+    fetch(url)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        document.querySelector('#current-temperature').innerText = data.main.temp;
+      })
+  }
+
+  displayWeather('London');
+    document.querySelector('#select-city').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const city = document.querySelector('#current-city').value;
+
+    displayWeather(city);
+    })
+});
